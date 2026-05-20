@@ -8,7 +8,7 @@ size_t string_length(const char *string);                    // Returns length o
 void string_free(char *string);                              // Frees memory allocated for a string, safe if NULL
 char *string_duplicate(const char *string);                  // Returns a dynamically allocated copy of the string, caller must free
 int string_equals(const char *string1, const char *string2); // Returns 1 if strings are equal, otherwise returns 0
-int string_compare(const char *a, const char *b);
+int string_compare(const char *a, const char *b);            // Compares 2 strings lexicographically and returns an integer indicating relative order
 
 // Validation helper functions
 int string_index_valid(const char *string, int index);          // Returns 1 if index is within valid bounds of the string, otherwise returns 0
@@ -65,6 +65,9 @@ char *string_join(char **strings, int count, const char *separator);            
 
 // Tokenization function
 char **string_split(const char *string, char delim, int *count); // Returns a new 2d array ( string) with the substrings seperated by delim tokenized and *count contains the number of substrings , caller must free
+
+// Acessor functions
+char string_char_at(const char *string , int index); // returns the character at index . returns '\0' if index invalid
 
 size_t string_length(const char *string)
 {
@@ -1366,4 +1369,39 @@ char *string_join(char **strings, int count, const char *separator)
     result = ptr;
     result[result_index] = '\0';
     return result;
+}
+
+
+int string_compare(const char *a, const char *b)
+{
+    if (a == NULL || b == NULL) return -1;
+    
+    size_t string_l1 = string_length(a);
+    size_t string_l2 = string_length(b);
+    int min = 0;
+
+    if (string_l1 == string_l2){
+        if (string_equals(a , b) == 1) return 0;
+    }
+
+    if (string_l1 > string_l2) min = string_l2;
+    else min = string_l1;
+
+    int a_count = 0 , b_count = 0;
+    for (int i = 0 ; i < min ; i++){
+        if (a[i] != b[i]) return (int)a[i] - (int)b[i];
+    }
+
+    return string_l1 - string_l2;
+}
+
+
+char string_char_at(const char *string , int index)
+{
+    if (string == NULL) return '\0';
+
+    size_t string_l1 = string_length(string);
+    
+    if (index < 0 || index > string_l1 -1 ) return '\0';
+    else return string[index];
 }

@@ -68,4 +68,7 @@ char *string_join(char **strings, int count, const char *separator);
 /* Tokenization */
 char **string_split(const char *string, char delim, int *count);
 
+/* Acessor functions*/
+char string_char_at(const char *string, int index); // returns the character at index . returns '\0' if index invalid
+
 #endif

@@ -37,6 +37,8 @@ All identifiers avoid C++ reserved keywords, and the API is safe to include in `
   - string_replace_first, string_replace_all, string_join
 - **Tokenization**
   - string_split
+- **Accessor operations**
+  - string_char_at
 
 ---
 
@@ -85,6 +87,9 @@ int main() {
     char *removed = string_remove_all(appended, "Hello");
     printf("Removed 'Hello': '%s'\n", removed);
 
+    char ch = string_char_at("Hello", 1);
+    printf("%c\n", ch);
+
     string_free(trimmed);
     string_free(upper);
     string_free(reversed);
@@ -128,7 +133,6 @@ Please follow consistent naming (string\_\*) and document each function clearly.
 
 ## TODO / Known Issues
 
-- string_compare is not yet implemented
 - Some functions may have edge cases with empty strings or NULL pointers — check documentation before use
 
 ---
