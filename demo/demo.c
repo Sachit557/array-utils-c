@@ -98,6 +98,14 @@ int main(void)
        printf("is_alnum(\"a1b2\"): %d\n", string_is_alnum("a1b2"));
        printf("is_empty(\"\"): %d\n", string_is_empty(""));
 
+       printf("\n==== ACCESSOR OPS ====\n");
+
+       printf("char_at(1): %c\n",
+              string_char_at("Hello", 1));
+
+       printf("char_at(99): %d\n",
+              string_char_at("Hello", 99));
+
        string_free(s1);
        string_free(s2);
        string_free(sub1);
