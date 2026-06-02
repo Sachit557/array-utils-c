@@ -78,9 +78,13 @@ size_t string_length(const char *string)
 
 char *string_append(const char *string, const char *append)
 {
+    
+    if (string == NULL || append == NULL)
+        return NULL;
+
     size_t string_l1 = string_length(string);
     size_t string_l2 = string_length(append);
-    size_t result_size = string_l1 + string_l2 + 1; // +1 is added for null termination at the end
+    size_t result_size = string_l1 + string_l2 + 1;       
 
     char *result = malloc(result_size * sizeof(char));
 
@@ -100,6 +104,9 @@ char *string_append(const char *string, const char *append)
 
 char *string_replace(int start, int end, const char *string, const char *new_text)
 {
+    if (string == NULL || new_text == NULL)
+        return NULL;
+
     if (start < 0 || end < 0)
         return NULL;
 
@@ -115,7 +122,7 @@ char *string_replace(int start, int end, const char *string, const char *new_tex
 
     if (string_l1 - 1 >= end)
     {
-        char *result = malloc(string_l1 + string_l2 + 1); // allocate here
+        char *result = malloc(string_l1 + string_l2 + 1); 
 
         for (int i = 0; i < start; i++)
             result[k++] = string[i];
@@ -162,6 +169,10 @@ char *string_replace(int start, int end, const char *string, const char *new_tex
 
 char *string_substring_range(int start, int end, const char *string)
 {
+
+    if (string == NULL)
+        return NULL;
+
     size_t index = 0;
     if (start < 0 || end < 0)
         return NULL;
@@ -192,6 +203,9 @@ char *string_substring_range(int start, int end, const char *string)
 
 char *string_insert(const char *string, const char *added_string, int index)
 {
+    if (string == NULL || added_string == NULL)
+        return NULL;
+
     if (index < 0)
         return NULL;
     size_t string_l1 = string_length(string);
@@ -220,6 +234,9 @@ char *string_insert(const char *string, const char *added_string, int index)
 
 char *string_duplicate(const char *string)
 {
+    if (string == NULL)
+        return NULL;
+
     size_t string_l1 = string_length(string);
     char *result = malloc((string_l1 + 1) * sizeof(char));
     if (result == NULL)
@@ -234,12 +251,12 @@ char *string_duplicate(const char *string)
 
 char *string_trim(const char *string)
 {
+    if (string == NULL)
+        return NULL;
+
     size_t k = 0;
     int startindex = 0;
     int endindex = 0;
-
-    if (string == NULL)
-        return NULL;
 
     size_t string_l1 = string_length(string);
 
@@ -354,6 +371,7 @@ int string_starts_with(const char *string, const char *prefix)
 {
     if (string == NULL || prefix == NULL)
         return -1;
+
     size_t string_l1 = string_length(string);
     size_t string_l2 = string_length(prefix);
     int startswithprefix = 1;
@@ -581,6 +599,9 @@ int string_is_alnum(const char *string)
 
 char *string_pad_left(const char *string, int width, char pad)
 {
+    
+    if (string == NULL)
+        return NULL;
 
     size_t string_l1 = string_length(string);
 
@@ -621,6 +642,9 @@ char *string_pad_left(const char *string, int width, char pad)
 
 char *string_pad_right(const char *string, int width, char pad)
 {
+    if (string == NULL)
+        return NULL;
+
     size_t string_l1 = string_length(string);
 
     if (width <= string_l1)
