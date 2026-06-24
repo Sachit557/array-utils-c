@@ -67,7 +67,7 @@ char *string_join(char **strings, int count, const char *separator);            
 char **string_split(const char *string, char delim, int *count); // Returns a new 2d array ( string) with the substrings seperated by delim tokenized and *count contains the number of substrings , caller must free
 
 // Acessor functions
-char string_char_at(const char *string , int index); // returns the character at index . returns '\0' if index invalid
+char string_char_at(const char *string, int index); // returns the character at index . returns '\0' if index invalid
 
 size_t string_length(const char *string)
 {
@@ -78,13 +78,13 @@ size_t string_length(const char *string)
 
 char *string_append(const char *string, const char *append)
 {
-    
+
     if (string == NULL || append == NULL)
         return NULL;
 
     size_t string_l1 = string_length(string);
     size_t string_l2 = string_length(append);
-    size_t result_size = string_l1 + string_l2 + 1;       
+    size_t result_size = string_l1 + string_l2 + 1;
 
     char *result = malloc(result_size * sizeof(char));
 
@@ -122,7 +122,7 @@ char *string_replace(int start, int end, const char *string, const char *new_tex
 
     if (string_l1 - 1 >= end)
     {
-        char *result = malloc(string_l1 + string_l2 + 1); 
+        char *result = malloc(string_l1 + string_l2 + 1);
 
         for (int i = 0; i < start; i++)
             result[k++] = string[i];
@@ -599,7 +599,7 @@ int string_is_alnum(const char *string)
 
 char *string_pad_left(const char *string, int width, char pad)
 {
-    
+
     if (string == NULL)
         return NULL;
 
@@ -1299,9 +1299,7 @@ int string_count(const char *string, const char *pattern)
             for (size_t j = i; j < string_l2 + i; j++)
             {
                 if (string[j] == pattern[k++])
-                {
                     count++;
-                }
 
                 else
                     break;
@@ -1395,37 +1393,45 @@ char *string_join(char **strings, int count, const char *separator)
     return result;
 }
 
-
 int string_compare(const char *a, const char *b)
 {
-    if (a == NULL || b == NULL) return -1;
-    
+    if (a == NULL || b == NULL)
+        return -1;
+
     size_t string_l1 = string_length(a);
     size_t string_l2 = string_length(b);
     int min = 0;
 
-    if (string_l1 == string_l2){
-        if (string_equals(a , b) == 1) return 0;
+    if (string_l1 == string_l2)
+    {
+        if (string_equals(a, b) == 1)
+            return 0;
     }
 
-    if (string_l1 > string_l2) min = string_l2;
-    else min = string_l1;
+    if (string_l1 > string_l2)
+        min = string_l2;
+    else
+        min = string_l1;
 
-    int a_count = 0 , b_count = 0;
-    for (int i = 0 ; i < min ; i++){
-        if (a[i] != b[i]) return (int)a[i] - (int)b[i];
+    int a_count = 0, b_count = 0;
+    for (int i = 0; i < min; i++)
+    {
+        if (a[i] != b[i])
+            return (int)a[i] - (int)b[i];
     }
 
     return string_l1 - string_l2;
 }
 
-
-char string_char_at(const char *string , int index)
+char string_char_at(const char *string, int index)
 {
-    if (string == NULL) return '\0';
+    if (string == NULL)
+        return '\0';
 
     size_t string_l1 = string_length(string);
-    
-    if (index < 0 || index > string_l1 -1 ) return '\0';
-    else return string[index];
+
+    if (index < 0 || index > string_l1 - 1)
+        return '\0';
+    else
+        return string[index];
 }
